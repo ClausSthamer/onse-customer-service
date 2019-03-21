@@ -49,6 +49,19 @@ def create_customer():
                    surname=customer.surname), HTTPStatus.CREATED
 
 
+@customers.route('/<string:customer_id>', methods=['PUT'])
+def update_customer_name(customer_id):
+    customer_repository = current_app.customer_repository
+    body = request.get_json()
+
+    commands.update_customer(first_name=body['firstName'],
+                             surname=body['surname'],
+                             customer_id=int(customer_id),
+                             customer_repository=customer_repository)
+
+    return jsonify(), HTTPStatus.OK
+
+
 @customers.errorhandler(CustomerNotFound)
 def customer_not_found(e):
     return jsonify(dict(message='Customer not found')), HTTPStatus.NOT_FOUND
