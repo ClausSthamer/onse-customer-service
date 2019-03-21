@@ -1,3 +1,6 @@
+from behave import when, then
+
+
 @when(u'I update customer "{customer_id}" name to "{new_name}"')
 def update_customer_name(context, customer_id, new_name):
     (first_name, surname) = new_name.split(' ', 2)

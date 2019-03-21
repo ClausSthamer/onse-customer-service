@@ -61,6 +61,7 @@ def test_create_customer(create_customer, web_client, customer_repository):
         surname='Humble',
         customerId='None')  # ID isNone because call is mocked
 
+
 @patch('customer_service.model.commands.update_customer')
 def test_update_customer(update_customer, web_client, customer_repository):
     request_body = dict(firstName='Nicole', surname='Forsgren')
@@ -75,6 +76,7 @@ def test_update_customer(update_customer, web_client, customer_repository):
 
     assert response.status_code == 200
     assert response.is_json
+
 
 @pytest.mark.parametrize(
     'bad_payload',
